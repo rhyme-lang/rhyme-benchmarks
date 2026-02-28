@@ -1,0 +1,4 @@
+[submodule "rhyme"]
+	path = rhyme
+	url = https://github.com/rhyme-lang/rhyme.git
+	branch = rh_bench

@@ -91,16 +91,16 @@ def generate_data(dbgen_dir, data_dir, load_dir, update_dir, delete_dir, scale, 
                          cwd=dbgen_dir)
     p.communicate()
     if not p.returncode:
-        update_path = os.path.join(data_dir, update_dir)
-        delete_path = os.path.join(data_dir, delete_dir)
-        if inner_generate_data(update_path, dbgen_dir, "*.tbl.u*", ".csv"):
-            print("unable to generate data for the update phase")
-            return 1
-        print("generated data for the update phase")
-        if inner_generate_data(delete_path, dbgen_dir, "delete.*", ".csv"):
-            print("unable to generate data for the delete phase")
-            return 1
-        print("generated data for the delete phase")
+        #update_path = os.path.join(data_dir, update_dir)
+        #delete_path = os.path.join(data_dir, delete_dir)
+        #if inner_generate_data(update_path, dbgen_dir, "*.tbl.u*", ".csv"):
+        #    print("unable to generate data for the update phase")
+        #    return 1
+        #print("generated data for the update phase")
+        #if inner_generate_data(delete_path, dbgen_dir, "delete.*", ".csv"):
+        #    print("unable to generate data for the delete phase")
+        #    return 1
+        #print("generated data for the delete phase")
         # All files written successfully. Return success code.
         return 0
     else:
