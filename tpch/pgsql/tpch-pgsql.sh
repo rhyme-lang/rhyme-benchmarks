@@ -18,5 +18,5 @@ python3 tpch_pgsql.py -b -s 10 -U $USER load
 
 cd ..
 
-python3 bench.py ./queries
+python3 bench.py guo543 ./queries
 

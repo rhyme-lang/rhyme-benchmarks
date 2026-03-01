@@ -12,7 +12,7 @@ def run_query(query_file, username, measure=False):
         # Use \timing to get execution time
         # Disable parallel execution for consistent benchmarking
         result = subprocess.run(
-            ['psql', '-U', username, '-d', 'tpch',
+            ['psql', '-U', username, '-d', 'json_bench',
              '-c', 'SET max_parallel_workers_per_gather = 0;',
              '-c', '\\timing',
              '-f', str(query_file)],
@@ -40,7 +40,7 @@ def run_query(query_file, username, measure=False):
     else:
         # Warmup run - also disable parallel execution
         subprocess.run(
-            ['psql', '-U', username, '-d', 'tpch',
+            ['psql', '-U', username, '-d', 'json_bench',
              '-c', 'SET max_parallel_workers_per_gather = 0;',
              '-f', str(query_file)],
             capture_output=True
@@ -54,8 +54,7 @@ def benchmark_query(query_file, username):
 
     # 5 benchmark runs with server-side timing
     times = []
-    for i in range(5):
-        print(f"Run {i+1}")
+    for _ in range(5):
         elapsed = run_query(query_file, username, measure=True)
         if elapsed is None:
             raise Exception("Could not parse execution time")
@@ -85,8 +84,8 @@ def main():
     else:
         # Look for query files numbered 1.sql - 22.sql
         sql_files = []
-        for i in range(1, 23):
-            query_file = sql_path / f"{i}.sql"
+        for i in range(1, 6):
+            query_file = sql_path / f"q{i}.sql"
             if query_file.exists():
                 sql_files.append(query_file)
     
