@@ -1,2 +1,0 @@
-Query	Time (milliseconds)
-Q06	5017.36035156
