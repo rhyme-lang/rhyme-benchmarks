@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+  echo "Usage: $0 <user>"
+  exit 1
+fi
+
 USER=$1
 
 psql -d json_bench -U $USER -f ddl.sql
