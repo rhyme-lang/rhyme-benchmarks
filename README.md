@@ -130,7 +130,7 @@ Run the bash script under ./additional/rhyme.
 ./bench.sh
 ```
 
-### End-to-End analysis on runtime
+### End-to-End execution time analysis
 
 Run the Python script under ./additional/rhyme.
 
