@@ -1,6 +1,6 @@
-const { rh, api } = require('../../../rhyme/src/rhyme')
-const { compile } = require('../../../rhyme/src/simple-eval')
-const { typing, types } = require('../../../rhyme/src/typing')
+const { rh, api } = require('../../rhyme/src/rhyme')
+const { compile } = require('../../rhyme/src/simple-eval')
+const { typing, types } = require('../../rhyme/src/typing')
 
 // point to the data directory
 let dataDir = "../data"
