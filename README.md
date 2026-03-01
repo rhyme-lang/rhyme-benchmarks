@@ -65,7 +65,7 @@ Run the bash script under ./tpch/rhyme.
 
 ```
 # execute inside ./tpch/rhyme
-./tpch_rhyme.sh <username>
+./tpch_rhyme.sh
 ```
 
 ## JSONBench
@@ -100,7 +100,7 @@ Run the bash script under ./json_bench/rhyme.
 
 ```
 # execute inside ./json_bench/rhyme
-./json_bench_rhyme.sh <username>
+./json_bench_rhyme.sh
 ```
 
 ## Additional Queries
