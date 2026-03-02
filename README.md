@@ -20,6 +20,7 @@ To run the benchmarks, the following tools / softwares needs to be available on 
 - DuckDB 1.4.4.
 - jq 1.8.1.
 - Python is required along with the venv module.
+- node.js --- Rhyme is well tested with node.js 16.x, 18.x & 20.x.
 
 ## Get Rhyme
 
