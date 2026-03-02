@@ -21,6 +21,7 @@ To run the benchmarks, the following tools / softwares needs to be available on 
 - jq 1.8.1.
 - Python is required along with the venv module.
 - node.js --- Rhyme is well tested with node.js 16.x, 18.x & 20.x.
+- gcc and tcc is required for the compilation of the C code and the compilation time analysis.
 
 ## Get Rhyme
 
