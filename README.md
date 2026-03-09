@@ -31,6 +31,26 @@ Rhyme is included as a submodule. Run the following command to update submodule:
 git submodule update --init
 ```
 
+## Running the Benchmarks
+
+To run all benchmarks at once:
+
+```
+./run_all.sh <USER> <GITHUB_TOKEN>
+```
+
+Where `<USER>` is the PostgreSQL username and `<GITHUB_TOKEN>` is a GitHub personal access token.
+
+Alternatively, each benchmark suite can be run separately:
+
+```
+./tpch.sh <USER>
+./json_bench.sh <USER>
+./additional.sh <GITHUB_TOKEN>
+```
+
+The sections below describe step-by-step execution for each benchmark suite.
+
 ## TPC-H
 
 First, generate the data for TPC-H. Execute the command in ./tpch:
