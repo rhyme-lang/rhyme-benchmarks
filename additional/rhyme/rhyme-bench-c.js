@@ -6,7 +6,7 @@ const { runtime: rt } = require("../../rhyme/src/simple-runtime")
 let outDir = "out"
 
 let settings = {
-  backend: "c-new",
+  backend: "c",
   schema: types.never,
   outDir,
   enableOptimizations: false,
@@ -65,9 +65,9 @@ async function q1() {
   })
   let t3 = performance.now()
   let t2 = f.explain.time
-  //console.log("Q1 Rhyme compilation: " + (t2 - t1) + " ms")
-  //console.log("Q1 C compilation: " + (t3 - t2) + " ms")
-  console.log("Compilation: " + (t3 - t1) + " ms")
+  console.log("Q1 Rhyme compilation: " + (t2 - t1) + " ms")
+  console.log("Q1 C compilation: " + (t3 - t2) + " ms")
+  console.log("Q1 total compilation: " + (t3 - t1) + " ms")
 }
 
 async function q2() {
@@ -96,8 +96,8 @@ async function q2() {
   })
   let t3 = performance.now()
   let t2 = f.explain.time
-  //console.log("Rhyme compilation: " + (t2 - t1) + " ms")
-  //console.log("C compilation: " + (t3 - t2) + " ms")
+  console.log("Rhyme compilation: " + (t2 - t1) + " ms")
+  console.log("C compilation: " + (t3 - t2) + " ms")
 }
 
 async function q3() {
@@ -128,8 +128,8 @@ async function q3() {
   })
   let t3 = performance.now()
   let t2 = f.explain.time
-  //console.log("Rhyme compilation: " + (t2 - t1) + " ms")
-  //console.log("C compilation: " + (t3 - t2) + " ms")
+  console.log("Rhyme compilation: " + (t2 - t1) + " ms")
+  console.log("C compilation: " + (t3 - t2) + " ms")
 }
 
 async function q4() {
@@ -150,18 +150,13 @@ async function q4() {
   })
   let t3 = performance.now()
   let t2 = f.explain.time
-  //console.log("Rhyme compilation: " + (t2 - t1) + " ms")
-  //console.log("C compilation: " + (t3 - t2) + " ms")
+  console.log("Rhyme compilation: " + (t2 - t1) + " ms")
+  console.log("C compilation: " + (t3 - t2) + " ms")
 }
 
 let args = process.argv
 
 let q = Number(args[2])
-
-if (args[3]) settings.compiler = args[3]
-if (args[4]) settings.cFlags = args[4]
-
-//console.log(args)
 
 switch (q) {
   case 1:

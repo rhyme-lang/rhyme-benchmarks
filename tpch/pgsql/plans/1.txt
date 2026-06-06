@@ -1,0 +1,8 @@
+                      plan                      
+------------------------------------------------
+ 🖩 OUTPUT (Estimate: 1)                        +
+ ▲ SORT (In-Memory) (Estimate: 1)              +
+ 𝚪 GROUP BY (In-Memory) (Estimate: 4)          +
+ 🗐 TABLESCAN on lineitem (Estimate: 59'283'090)
+(1 row)
+

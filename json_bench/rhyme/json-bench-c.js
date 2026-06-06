@@ -26,7 +26,7 @@ let schema = typing.parseType({
 let bluesky = rh`loadNDJSON "../data/bluesky.json" ${schema}`
 
 let settings = {
-  backend: "c-new",
+  backend: "c",
   schema: types.never,
   outDir,
   enableOptimizations: false,

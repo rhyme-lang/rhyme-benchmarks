@@ -7,33 +7,45 @@ import numpy as np
 
 N = 5
 
-rhyme = []
 
-medians = []
-
-text = ""
-
-for i in range(1, 23):
-    rhyme_exec = "./out/q" + str(i)
-
-    rhyme_out = rhyme_exec + ".out"
-
+def bench(rhyme_exec):
     print("running rhyme generated query " + rhyme_exec)
     os.system(f"{rhyme_exec} > /dev/null 2>&1")
 
     res = []
+    line = ""
     for _ in range(N):
         result = subprocess.run([rhyme_exec], capture_output=True, text=True)
         time = re.findall("[0-9]+", result.stderr)
         print(time)
         res.append(int(time[1]) / 1000)
-        text += time[1] + " "
+        line += time[1] + " "
 
     avg = sum(res) / N
     median = np.median(res)
-    medians.append(median)
-    text += str(median) + " " + str(avg) + "\n"
+    line += str(median) + " " + str(avg) + "\n"
     print(res)
+    return median, line
+
+
+rhyme = []
+medians = []
+text = ""
+
+cedar_medians = {}
+cedar_text = ""
+
+for i in range(1, 23):
+    rhyme_exec = "./out/q" + str(i)
+    median, line = bench(rhyme_exec)
+    medians.append(median)
+    text += line
+
+    cedar_exec = "./out/q" + str(i) + "_cedar"
+    if os.path.isfile(cedar_exec):
+        cedar_median, cedar_line = bench(cedar_exec)
+        cedar_medians[i] = cedar_median
+        cedar_text += f"q{i}_cedar " + cedar_line
 
 for i in range(22):
   print(f"(Q{i + 1}, {int(medians[i])})")
@@ -44,6 +56,16 @@ for i in range(22):
 print(text)
 with open("out.txt", "w") as f:
     f.write(text)
+
+if cedar_medians:
+    print("\n--- CedarDB variants ---")
+    for i in sorted(cedar_medians):
+        print(f"(Q{i}_cedar, {int(cedar_medians[i])})")
+    for i in sorted(cedar_medians):
+        print(str(int(cedar_medians[i])) + "&")
+    print(cedar_text)
+    with open("out_cedar.txt", "w") as f:
+        f.write(cedar_text)
 
 
 # Query labels

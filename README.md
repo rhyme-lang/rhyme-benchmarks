@@ -16,6 +16,7 @@ Note that the code for evaluating the performance of Flare is not included since
 To run the benchmarks, the following tools / softwares needs to be available on the machine (relevant executables needs to be on PATH):
 
 - PostgreSQL 18.1. (the server needs to be running with the existance of a database named tpch)
+- CedarDB. The server must be running and accessible via `psql`.
 - Spark 4.1.1. The Scala toolchain is required to compile the Scala code along with Java. Note that Spark 4.1.1 runs on Java 17/21, Scala 2.13.
 - DuckDB 1.4.4.
 - jq 1.8.1.
@@ -69,6 +70,24 @@ Run the bash script under ./tpch/pgsql. The username for postgres is required. A
 ./tpch_pgsql.sh <username>
 ```
 
+### CedarDB
+
+First, load the TPC-H data into CedarDB. Run the following under `./tpch/pgsql`, passing the CedarDB host and port as needed:
+
+```
+# execute inside ./tpch/pgsql
+python3 load_cedardb.py -U <username> -H <host> -p <port>
+```
+
+Then run the benchmark:
+
+```
+# execute inside ./tpch/pgsql
+python3 bench_cedar.py <username> ./queries
+```
+
+Results are written to `benchmark_results.txt` in the same directory.
+
 ### Spark
 
 Run the following commands under ./tpch/spark/tpch-spark.
@@ -107,6 +126,17 @@ Run the bash script under ./json_bench/pgsql. The username for postgres is requi
 # execute inside ./json_bench/pgsql
 ./json_bench_pgsql.sh <username>
 ```
+
+### CedarDB
+
+Run the bash script under `./json_bench/pgsql`. The username for CedarDB is required.
+
+```
+# execute inside ./json_bench/pgsql
+./json_bench_cedar.sh <username>
+```
+
+This script loads the schema and bluesky data into CedarDB, then runs the benchmark. Results are written to `benchmark_results.txt` in the same directory.
 
 ### DuckDB
 
